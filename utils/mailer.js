@@ -16,10 +16,10 @@ export const sendResetEmail = async (to, resetLink) => {
     to,
     subject: "Password Reset",
     html: `
-      <p>You requested a password reset</p>
+      <p>You requested a password reset.</p>
       <p>Click the link below:</p>
       <a href="${resetLink}">Reset Password</a>
-      <p>This link will expire in 15 minutes.</p>
+      <p>This link expires in 15 minutes.</p>
     `
   });
 };
