@@ -21,7 +21,7 @@ A simple authentication app built with Node.js, Express.js, and MongoDB.
 
 ## Installation
 
-1. Clone the repository: `git clone 
+1. Clone the repository: `git clone https://github.com/Bhuviofficial/AUTH-APP-BACKEND
 2. Install dependencies: `npm install`
 3. Create a MongoDB database and update the `MONGO_URI` environment variable in the `.env` file
 4. Start the server: `npm start`
