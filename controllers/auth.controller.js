@@ -27,22 +27,22 @@ export const login = async (req, res) => {
 
   res.json({ message: "Login successful" });
 };
+
+/* FORGOT PASSWORD */
 export const forgotPassword = async (req, res) => {
   const { email } = req.body;
   const user = await User.findOne({ email });
-  if (!user)
-    return res.status(404).json({ message: "User not found" });
+  if (!user) return res.status(400).json({ message: "User not found" });
 
-  const token = crypto.randomBytes(32).toString("hex");
-  user.resetToken = token;
-  user.resetTokenExpiry = Date.now() + 10 * 60 * 1000;
+  const resetToken = crypto.randomBytes(32).toString("hex");
+  user.resetToken = resetToken;
+  user.resetTokenExpiry = Date.now() + 3600000; // 1 hour
   await user.save();
 
-  const link = `${process.env.FRONTEND_URL}/reset-password/${token}`;
-  await sendResetEmail(email, link);
+  await sendResetEmail(email, resetToken);
+  res.json({ message: "Password reset email sent" });
 
-  res.json({ message: "Reset link sent to email" });
-};
+}
 
 /* RESET PASSWORD */
 export const resetPassword = async (req, res) => {
